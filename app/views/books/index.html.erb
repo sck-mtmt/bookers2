@@ -1,3 +1,10 @@
+<% @books.each do |book| %>
+<div>
+  <%= image_tag book.get_image %>
+  <p>Title：<%= book.title %></p>
+  <p>Opinion：<%= book.body %></p>
+</div>
+<% end %>
 <h2>New book</h2>
 <%= form_with model:@book do |f| %>
 
