@@ -1,3 +1,5 @@
+  <%= flash[:notice] %>
+  <%= flash[:alert] %>
 <div>
 <h2>User info</h2>
   <%= image_tag @user.get_image(100,100) %>
@@ -45,7 +47,7 @@
   <tbody>
     <% @books.each do |book| %>
     <tr>
-    <td><%= book.title %></td>
+    <td><a href="/books/:id"><%= book.title %></a></td>
     <td><%= book.body %></td>
     <td></td>
     </tr>
