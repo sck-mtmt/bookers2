@@ -19,7 +19,16 @@
   </tbody>
   </table>
   <p><%= link_to "編集",edit_user_path(@user) %></p>
-<h2>New book</h2>
+
+  <h2>New book</h2>
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>error
+  <ul>
+  <% @book.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+  </ul>
+  <% end %>
   <%= form_with model: @book, url:'/books',method: :post do |f| %>
 <div class="field">
   <%= f.label :Title%><br>
@@ -32,22 +41,22 @@
 </div>
   <% end %>
   <h2>Book detail</h2>
-<table>
+  <table>
   <thead>
-    <tr>
-    <th>Title</th>
-    <th>Opinion</th>
-    </tr>
+  <tr>
+  <th>Title</th>
+  <th>Opinion</th>
+  </tr>
   </thead>
   <tbody>
-    <tr>
-    <td><%= image_tag @user.get_image(100,100) %></td>
-    <td><a href="/users/:id"><%= @user.name %></a></td>
-    <td><a href="/books/:id"><%= book.title %></a></td>
-    <td><%= @book.body %></td>
+  <tr>
+  <td><%= image_tag @user.get_image(100,100) %></td><br>
+  <td><a href="/users/:id"><%= @user.name %></a></td>
+  <td><a href="/books/:id"><%= book.title %></a></td>
+  <td><%= @book.body %></td>
 
-    <td><%= link_to "Edit",edit_user_path(@user) %></td>
-    <td><%= link_to "destroy", destroy_user_path(@user.id), method: :delete, data:{confirm:"Are you sure?" }%></td>
-    </tr>
+  <td><%= link_to "Edit",edit_user_path(@user) %></td>
+  <td><%= link_to "destroy", destroy_user_path(@user.id), method: :delete, data:{confirm:"Are you sure?" }%></td>
+  </tr>
   </tbody>
- </table>
+  </table>

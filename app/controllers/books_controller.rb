@@ -7,7 +7,7 @@ class BooksController < ApplicationController
 
   def show
     @book=Book.find(params[:id])
-    @users=@book.user
+    @user=@book.user
   end
 
   def update
@@ -15,10 +15,10 @@ class BooksController < ApplicationController
     @book=Book.find(params[:id])
     if book.update(book_params)
       flash[:notice]="succesfully"
-    redirect_to book_path(book.id)
+      redirect_to book_path(book.id)
     else
-    flash.now[:alert]="error"
-    render :show
+      flash.now[:alert]="error"
+      render :show
     end
   end
 
@@ -37,10 +37,10 @@ class BooksController < ApplicationController
     @book.user_id=current_user.id
     if @book.save
       flash[:notice]="successfully"
-      redirect_to books_path
+      redirect_to books_path(book.id)
     else
       flash.now[:alert]="error"
-      rebder :show
+      render :show
     end
   end
 
