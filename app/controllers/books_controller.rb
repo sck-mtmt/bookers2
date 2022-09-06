@@ -17,7 +17,7 @@ class BooksController < ApplicationController
     else
       @user=@book.user
       @books=Book.all
-      flash.now[:alert]="error"
+      flash.now[:alert]="errors prohibited this obj from being saved:"
       render :index
     end
   end
@@ -30,11 +30,11 @@ class BooksController < ApplicationController
   def update
     @books=Book.all
     @book=Book.find(params[:id])
-    if book.update(book_params)
+    if @book.update(book_params)
       flash[:notice]="You have updated book successfully."
-      redirect_to book_path(book.id)
+      redirect_to book_path(@book.id)
     else
-      flash.now[:alert]="error"
+      flash.now[:alert]="errors prohibited this obj from being saved:"
       render :edit
     end
   end

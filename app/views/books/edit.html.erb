@@ -10,20 +10,19 @@
   <% @user.errors.full_messages.each do |message| %>
   <li><%= message %></li>
   <% end %>
-
   </ul>
   <% end %>
   <%= form_with model: @book do |f| %>
   <div class="form-group">
   <label for="title">Title</label><br>
-  <%= f.text_field :title, autofocus: true, id:"inputName"%><br>
+  <%= f.text_field :title, autofocus: true, id:"inputTitle"%><br>
   </div>
   <div class="form-group">
   <label for="body">Opinion</label><br>
-  <%= f.text_area :opinion, autofocus: true, id:"inputIntroduction"%><br>
+  <%= f.text_area :body, autofocus: true, id:"inputOpinion"%><br>
   </div>
   <div class="form-group">
-  <%= f.submit "Update User" %><br>
+  <%= f.submit "Update User", class: "btn btn-success" %>>
   </div>
   <%= link_to "Show", book_path(@book.id) %>
   |

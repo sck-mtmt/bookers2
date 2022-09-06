@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:update, :edit]
+   before_action :correct_user, only: [:edit, :update]
 
 
   def show
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
        flash[:notice]="You have updated user successfully."
        redirect_to user_path(@user.id)
     else
-       flash.now[:alert]="error"
+       flash.now[:alert]="error prohibited this obj from being saved:"
        render :edit
     end
   end
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
 
   def correct_user
      @user = User.find(params[:id])
-     if current_user.id != @user
-       redirect_to root_path
+     if current_user != @user
+       redirect_to users_path
      end
   end
 end
