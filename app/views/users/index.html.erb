@@ -1,5 +1,12 @@
   <%= flash[:notice] %>
-  <%= flash[:alert] %>
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+  <% @book.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+  </ul>
+  <% end %>
 <div class="container px-5 px-sm-0">
 <div class="row">
 <div class="col-md-3">
@@ -25,15 +32,6 @@
   <% end %>
   </div>
 <h2 class="mt-3">New book</h2>
-
-  <% if @book.errors.any? %>
-  <%= @book.errors.count %>error
-  <ul>
-  <% @book.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
-  <% end %>
-  </ul>
-  <% end %>
   <%= form_with model: @book, url:'/books',method: :post do |f| %>
   <div class="form-group">
   <%= f.label :Title%><br>
@@ -46,7 +44,6 @@
   <% end %>
   </div>
   </div>
-
 
 <div class="col-md-8 offset-md-1">
   <h2>Users</h2>
