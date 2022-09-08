@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user == current_user
      render :edit
     else
-     redirect_to users_path
+     redirect_to user_path(current_user)
     end
   end
 
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def correct_user
      @user = User.find(params[:id])
      if current_user != @user
-       redirect_to users_path
+       redirect_to user_path(current_user)
      end
   end
 end
